@@ -1,0 +1,14 @@
+{
+  "name": "Bem de Colo — Gestão do bebê",
+  "short_name": "Bem de Colo",
+  "description": "Rotina, estoque e planejamento financeiro familiar.",
+  "lang": "pt-BR",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f7f3ef",
+  "theme_color": "#f7f3ef",
+  "icons": [
+    {"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}
+  ]
+}

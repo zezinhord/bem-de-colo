@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#f7f3ef" />
+  <meta name="description" content="Rotina, estoque e planejamento financeiro da família em um só lugar." />
+  <title>Bem de Colo — Gestão do bebê</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#inicio" aria-label="Bem de Colo, início">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M20 33S5 24.4 5 14.8C5 8.2 13 5.4 20 13c7-7.6 15-4.8 15 1.8C35 24.4 20 33 20 33Z"/><path d="M13 20c2.1-2.8 4.3-4.2 7-4.2s4.9 1.4 7 4.2"/></svg></span>
+        <span><strong>bem de colo</strong><small>cuidado leve, dia a dia</small></span>
+      </a>
+      <div class="top-actions">
+        <button class="icon-btn" id="themeToggle" aria-label="Alternar tema" title="Alternar tema"><svg viewBox="0 0 24 24"><path d="M20.5 15.5A8.5 8.5 0 0 1 8.5 3.5 8.5 8.5 0 1 0 20.5 15.5Z"/></svg></button>
+        <button class="profile-chip" id="profileButton"><span class="avatar" id="avatarLetter">B</span><span id="babyNameTop">Meu bebê</span><svg viewBox="0 0 24 24"><path d="m7 10 5 5 5-5"/></svg></button>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <section class="page-heading" id="pageHeading">
+        <div><p class="eyebrow" id="todayLabel">SEU RESUMO DE HOJE</p><h1 id="greeting">Um dia de cada vez.</h1><p class="subheading" id="dateLabel"></p></div>
+        <div class="heading-decoration" aria-hidden="true"><span>✳</span><span>♡</span><span>✦</span></div>
+      </section>
+
+      <nav class="tabbar" aria-label="Navegação principal">
+        <button class="tab active" data-tab="routine"><span class="tab-icon"><svg viewBox="0 0 24 24"><path d="M12 21s-8-4.5-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 6.5-8 11-8 11Z"/></svg></span><span>Rotina</span></button>
+        <button class="tab" data-tab="stock"><span class="tab-icon"><svg viewBox="0 0 24 24"><path d="m3 7 9-4 9 4-9 4-9-4Z"/><path d="M3 7v10l9 4 9-4V7M12 11v10"/></svg></span><span>Estoque</span></button>
+        <button class="tab" data-tab="finance"><span class="tab-icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 10h18M8 15h3"/></svg></span><span>Cofre</span></button>
+        <button class="tab" data-tab="analytics"><span class="tab-icon"><svg viewBox="0 0 24 24"><path d="M4 19V5M4 19h17M8 15l4-5 3 2 5-7"/></svg></span><span>Gráficos</span></button>
+      </nav>
+
+      <section class="view active" id="view-routine">
+        <div class="section-intro"><div><p class="eyebrow">ACOMPANHAMENTO</p><h2>Como está o dia?</h2></div><button class="text-button" id="editBaby">Editar perfil <span>↗</span></button></div>
+        <div class="summary-grid" id="todayStats"></div>
+        <div class="quick-card">
+          <div class="quick-head"><div><p class="eyebrow">REGISTRO RÁPIDO</p><h3>O que aconteceu agora?</h3></div><span class="soft-pill">um toque para registrar</span></div>
+          <div class="quick-actions">
+            <button class="quick-action diaper" data-action="diaper"><span class="quick-icon"><svg viewBox="0 0 24 24"><path d="M5 5h14l-1 14H6L5 5Z"/><path d="M8 5c0 3 1.5 4 4 4s4-1 4-4M9 14h6"/></svg></span><strong>Trocar fralda</strong><small>suja ou molhada</small></button>
+            <button class="quick-action feed" data-action="feeding"><span class="quick-icon"><svg viewBox="0 0 24 24"><path d="M8 3h8M9 3v4l-2 2v11h10V9l-2-2V3M7 12h10M10 16h4"/></svg></span><strong>Alimentar</strong><small>leite ou fórmula</small></button>
+            <button class="quick-action sleep" data-action="sleep"><span class="quick-icon"><svg viewBox="0 0 24 24"><path d="M19 15.5A8 8 0 0 1 8.5 5 8 8 0 1 0 19 15.5Z"/><path d="M16 4v4M14 6h4"/></svg></span><strong id="sleepActionTitle">Começar sono</strong><small id="sleepActionSub">registrar uma soneca</small></button>
+          </div>
+        </div>
+        <div class="content-grid two-col">
+          <section class="panel timeline-panel">
+            <div class="panel-heading"><div><p class="eyebrow">HISTÓRICO</p><h3>Linha do tempo</h3></div><span class="date-chip" id="timelineDate"></span></div>
+            <div id="timeline" class="timeline"></div>
+          </section>
+          <section class="panel gentle-panel">
+            <div class="gentle-art" aria-hidden="true"><span>☁</span><span>♡</span></div>
+            <p class="eyebrow">LEMBRETE GENTIL</p><h3>Pequenos registros, menos preocupações.</h3><p>Você não precisa lembrar de tudo. Registre por aqui e deixe o aplicativo organizar o restante.</p>
+            <button class="outline-button" id="exportData">Exportar meus dados <svg viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M5 17v4h14v-4"/></svg></button>
+          </section>
+        </div>
+      </section>
+
+      <section class="view" id="view-stock">
+        <div class="section-intro"><div><p class="eyebrow">LOGÍSTICA DA CASA</p><h2>Estoque do bebê</h2><p class="section-copy">Saiba o que está acabando antes de precisar sair correndo.</p></div><button class="primary-button" id="addStock">＋ Novo item</button></div>
+        <div class="stock-overview" id="stockOverview"></div>
+        <div class="content-grid stock-grid">
+          <section class="panel"><div class="panel-heading"><div><p class="eyebrow">INVENTÁRIO</p><h3>Seus suprimentos</h3></div><span class="count-label" id="stockCount">0 itens</span></div><div class="inventory-list" id="inventoryList"></div></section>
+          <section class="panel shopping-panel"><div class="panel-heading"><div><p class="eyebrow">REPOSIÇÃO INTELIGENTE</p><h3>Lista de compras</h3></div><span class="shopping-count" id="shoppingCount">0</span></div><p class="muted small-copy">Itens que atingiram o ponto de reposição aparecem aqui automaticamente.</p><div id="shoppingList" class="shopping-list"></div></section>
+        </div>
+      </section>
+
+      <section class="view" id="view-finance">
+        <div class="section-intro"><div><p class="eyebrow">PLANEJAMENTO FAMILIAR</p><h2>O Cofre do bebê</h2><p class="section-copy">Transforme planos futuros em pequenas metas possíveis.</p></div><button class="primary-button" id="addGoal">＋ Nova meta</button></div>
+        <div class="finance-banner"><div><span class="banner-icon">✧</span><p class="eyebrow">RESERVAS PLANEJADAS</p><h3>Um pouquinho hoje faz diferença amanhã.</h3><p>Separe valores para despesas que você já consegue prever.</p></div><div class="banner-total"><small>Total guardado</small><strong id="totalSaved">R$ 0,00</strong><span id="goalCountLabel">0 metas ativas</span></div></div>
+        <div class="section-subhead"><div><p class="eyebrow">SINKING FUNDS</p><h3>Metas futuras</h3></div><span class="muted small-copy">Aportes calculados até a data limite</span></div>
+        <div class="goals-grid" id="goalsGrid"></div>
+        <section class="panel expenses-panel"><div class="panel-heading"><div><p class="eyebrow">SAÍDAS DO MÊS</p><h3>Despesas registradas</h3></div><button class="outline-button compact" id="addExpense">＋ Registrar despesa</button></div><div id="expenseSummary" class="expense-summary"></div><div id="expenseList" class="expense-list"></div></section>
+      </section>
+
+      <section class="view" id="view-analytics">
+        <div class="section-intro"><div><p class="eyebrow">VISÃO GERAL</p><h2>Seus dados, com clareza.</h2><p class="section-copy">Acompanhe tendências de consumo, gastos e objetivos.</p></div><span class="date-chip">Atualizado agora</span></div>
+        <div class="analytics-grid">
+          <section class="panel chart-panel stock-chart-panel"><div class="panel-heading"><div><p class="eyebrow">PREVISÃO DE ESTOQUE</p><h3>Consumo de fraldas</h3></div><span class="chart-tag">projeção</span></div><div id="stockChart" class="chart-area"></div><div class="chart-foot" id="stockChartFoot"></div></section>
+          <section class="panel chart-panel"><div class="panel-heading"><div><p class="eyebrow">ORÇAMENTO</p><h3>Despesas por categoria</h3></div><span class="chart-tag" id="monthTag"></span></div><div id="expenseChart" class="expense-chart-wrap"></div></section>
+        </div>
+        <section class="panel analytics-goals"><div class="panel-heading"><div><p class="eyebrow">PROGRESSO</p><h3>Metas do Cofre</h3></div><button class="text-button" data-goto="finance">Ver metas <span>↗</span></button></div><div class="mini-goals" id="miniGoals"></div></section>
+        <p class="disclaimer-note">As previsões são estimativas baseadas nos registros e parâmetros cadastrados. Elas não substituem orientação pediátrica ou financeira profissional.</p>
+      </section>
+
+      <footer class="app-footer"><span>bem de colo</span><span id="syncStatus">Sincronização familiar</span><button id="accountButton">Conta familiar</button><button id="settingsButton">Privacidade e dados</button></footer>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-head"><div><p class="eyebrow">BEM DE COLO</p><h2 id="modalTitle">Novo registro</h2></div><button class="icon-btn close-modal" id="closeModal" aria-label="Fechar"><svg viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div><form id="modalForm"><div id="modalFields" class="modal-fields"></div><div class="modal-actions"><button type="button" class="outline-button" id="cancelModal">Cancelar</button><button type="submit" class="primary-button" id="modalSubmit">Salvar registro</button></div></form></section></div>
+  <div class="auth-gate" id="authGate" aria-modal="true" role="dialog" aria-labelledby="authTitle">
+    <section class="auth-card" id="authAccess">
+      <div class="auth-brand"><span class="brand-mark" aria-hidden="true">♡</span><div><strong>bem de colo</strong><small>uma conta privada para a família</small></div></div>
+      <p class="eyebrow">ACESSO FAMILIAR</p>
+      <h1 id="authTitle">Cuidado compartilhado.</h1>
+      <p class="auth-copy" id="authDescription">Entre com seu e-mail e senha para acessar os registros sincronizados da família.</p>
+      <form id="authForm" class="auth-form">
+        <label for="authEmail">E-mail</label>
+        <input id="authEmail" type="email" autocomplete="email" required placeholder="voce@exemplo.com">
+        <label for="authPassword">Senha</label>
+        <input id="authPassword" type="password" autocomplete="current-password" minlength="8" required placeholder="Mínimo de 8 caracteres">
+        <button class="primary-button auth-submit" id="authSubmit" type="submit">Entrar</button>
+      </form>
+      <button class="auth-switch" id="authModeToggle" type="button">Ainda não tem conta? Criar cadastro</button>
+      <p class="auth-message" id="authMessage" role="status" aria-live="polite"></p>
+      <p class="auth-privacy">Acesso restrito aos dois responsáveis convidados. Seus registros ficam protegidos por autenticação e regras de acesso do banco.</p>
+    </section>
+
+    <section class="auth-card" id="familySetup" hidden>
+      <div class="auth-brand"><span class="brand-mark" aria-hidden="true">♡</span><div><strong>bem de colo</strong><small>configure o espaço compartilhado</small></div></div>
+      <p class="eyebrow">CONTA FAMILIAR</p>
+      <h1>Vamos reunir vocês?</h1>
+      <p class="auth-copy">Uma pessoa cria a família e compartilha o código de convite com a outra.</p>
+      <form id="createFamilyForm" class="auth-form family-form">
+        <label for="familyName">Nome da família</label>
+        <input id="familyName" type="text" maxlength="80" required placeholder="Ex.: Família Santos">
+        <button class="primary-button auth-submit" type="submit">Criar conta familiar</button>
+      </form>
+      <div class="auth-divider"><span>ou</span></div>
+      <form id="joinFamilyForm" class="auth-form family-form">
+        <label for="familyInviteCode">Código recebido do outro responsável</label>
+        <input id="familyInviteCode" type="text" maxlength="16" required placeholder="Ex.: A1B2C3D4E5F6A7B8" autocapitalize="characters">
+        <button class="outline-button auth-submit" type="submit">Entrar com convite</button>
+      </form>
+      <p class="auth-message" id="familyMessage" role="status" aria-live="polite"></p>
+      <button class="auth-switch" id="signOutFromSetup" type="button">Sair desta conta</button>
+    </section>
+
+    <section class="auth-card family-connected" id="familyConnected" hidden>
+      <div class="connected-check">✓</div>
+      <p class="eyebrow">FAMÍLIA CONECTADA</p>
+      <h1 id="connectedFamilyName">Bem de Colo</h1>
+      <p class="auth-copy">Compartilhe este código com o segundo responsável para conectar o outro celular.</p>
+      <div class="invite-code-box"><strong id="connectedInviteCode">—</strong><button class="outline-button" id="copyInviteCode" type="button">Copiar código</button></div>
+      <p class="auth-message" id="connectedMessage" role="status" aria-live="polite"></p>
+      <p class="auth-privacy">Este código funciona como convite privado. Compartilhe somente com a pessoa que terá acesso aos dados da família.</p>
+      <button class="primary-button auth-submit" id="enterAppButton" type="button">Abrir Bem de Colo</button>
+    </section>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
